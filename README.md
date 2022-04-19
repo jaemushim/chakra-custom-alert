@@ -22,3 +22,5 @@ Check out the demos here: https://codesandbox.io/s/ecstatic-lake-d8bilm?file=/sr
     Confirm
 </Button>
 ```
+
+the Confirm implementation is now an async/await operation as we need to return the promise result. 
