@@ -1,16 +1,14 @@
-import * as React from "react"
+import * as React from "react";
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
   VStack,
-  Code,
   Grid,
   theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+  Button,
+} from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { Alert, Confirm } from "./CustomAlert";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -18,21 +16,24 @@ export const App = () => (
       <Grid minH="100vh" p={3}>
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            onClick={() =>
+              Alert({ title: "Alert title", message: "Alert message" })
+            }
           >
-            Learn Chakra
-          </Link>
+            Alert
+          </Button>
+          <Button
+            onClick={async () =>
+              (await Confirm({ title: "test", message: "message" }))
+                ? console.log("true")
+                : console.log("false")
+            }
+          >
+            Confirm
+          </Button>
         </VStack>
       </Grid>
     </Box>
   </ChakraProvider>
-)
+);
